@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+
+<section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-77" style="background-image: url({{ post.photo.url }});">
+
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(0, 0, 0);"></div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ post.title }}</h3>
+                        <div><p> Дата: {{ post.event_date }} <br></p></div>
+                        <div><p> Тип: {{ post.category }} <br></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section" id="header3-78">
+    <div class="mbr-section__container container mbr-section__container--first">
+        <div class="mbr-header mbr-header--wysiwyg row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <p class="mbr-article mbr-article--wysiwyg col-sm-8 col-sm-offset-2"> {{ post.content | safe }} </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

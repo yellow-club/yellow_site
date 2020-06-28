@@ -15,37 +15,9 @@ class Home(ListView):
         context['title'] = 'Официальный сайт 1С сообщества Желтый Клуб'
         return context
 
-class PostsByTag(ListView):
-    template_name = 'blog/posts_by_category.html'  
-    context_object_name = 'posts'
-    paginate_by = 4
-    allow_empty = False
-
-    def get_queryset(self):
-        return Post.objects.filter(tags__slug=self.kwargs['slug'])
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Записи по тэгу: ' + str(Tag.objects.get(slug=self.kwargs['slug']))
-        return context
-
-class PostsByCategory(ListView):
-    template_name = 'blog/posts_by_category.html'  
-    context_object_name = 'posts'
-    paginate_by = 4
-    allow_empty = False
-
-    def get_queryset(self):
-        return Post.objects.filter(category__slug=self.kwargs['slug'])
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = Category.objects.get(slug=self.kwargs['slug'])
-        return context
-
 class GetPost(DetailView):
     model = Post
-    template_name = 'blog/single.html'  
+    template_name = 'yellow_site/event_page.html'  
     context_object_name = 'post'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -55,16 +27,12 @@ class GetPost(DetailView):
         self.object.refresh_from_db()
         return context
 
-class Search(ListView):
-    template_name = 'blog/search.html'  
+class GetAllPost(ListView):
+    model = Post
+    template_name = 'yellow_site/all_events.html'  
     context_object_name = 'posts'
-    paginate_by = 4
-
-    def get_queryset(self):
-        return Post.objects.filter(title__icontains=self.request.GET.get('s'))
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Поиск'
-        context['s'] = f"s={self.request.GET.get('s')}&"
+        context['title'] = 'Мероприятия с Желтым Клубом'
         return context
