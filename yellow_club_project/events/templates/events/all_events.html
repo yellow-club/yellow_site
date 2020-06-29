@@ -1,0 +1,75 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title%} {{ title }} {% endblock %}
+{% block content %}
+<section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-92" style="background-image: url({% static 'images/index_club.png' %});">
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(0, 0, 0);"></div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>Бесплатные меропрития Желтого клуба</h3>
+                        <div><p>Проводим офлайн и онлайн ивенты и делимся записями <br></p></div>
+                        <div><p>Укажите email и узнавайте о вебинарах первыми! <br></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-2 col-4" id="features1-108" style="background-color: rgb(239, 239, 239);">
+    
+    <div class="container">
+        <div class="row">
+
+            {% for event in events %}
+            <div>
+                <div class="thumbnail">
+                    <div class="image">
+                        <a href="{{ event.get_absolute_url}}">
+                            {% if event.photo %}
+                            <img class="undefined" src = "{{ event.photo.url }}" alt="{{ event.title }}" >
+                            {% else %}
+                            <img class="undefined" src="{% static 'images/one-page-2509x1670-67.jpg' %}"></a>
+                            {% endif %}
+                    </div>
+                    <div class="caption">
+                        <div>
+                            <h3><a href="{{ event.get_absolute_url}}">{{ event.title }}</a></h3>     
+                        </div>
+
+                        <h4><span> Автор: <span class="author-name">{{ event.author }}</span></span>
+                        </h4>
+                        {{ event.content|truncatewords_html:20|safe }}
+                        <h4><span>Создан: {{ event.created_at| date:"j E Y"}}</span></h4>
+
+                        <p class="group"><a href="{{ event.get_absolute_url}}" class="btn btn-default">Прочитать</a></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if page_obj.has_other_pages %}
+    <div class="pegination">
+        <div class="nav-links">
+
+            {% for p in page_obj.paginator.page_range %}
+                {% if page_obj.number == p %}
+                <span class="page-numbers current">{{ p }}</span>
+                {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                <a class="page-numbers" href="?page={{ p }}"> {{ p }} </a>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+                <a class="page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+</section>
+{% endblock %}

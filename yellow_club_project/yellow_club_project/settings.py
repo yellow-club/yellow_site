@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'yellow_site.apps.YellowSiteConfig',  
     'ckeditor',
     'ckeditor_uploader',
+    'django.contrib.sites',
+    'django.contrib.flatpages', 
+    'events.apps.EventsConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware', 
 ]
 
 ROOT_URLCONF = 'yellow_club_project.urls'
@@ -132,6 +136,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+SITE_ID = 1
 
 CKEDITOR_CONFIGS = {
     'default': {

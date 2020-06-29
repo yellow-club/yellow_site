@@ -1155,6 +1155,7 @@ html {
 .mbr-brand--inline .mbr-brand__logo,
 .mbr-brand--inline .mbr-brand__name {
   display: table-cell;
+  display: flex;
   vertical-align: middle;
 }
 .mbr-brand--inline .mbr-brand__logo {

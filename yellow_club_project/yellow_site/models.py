@@ -20,13 +20,12 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length = 255, verbose_name='Название')
     slug = models.SlugField(max_length = 255, verbose_name='Url', unique=True)
-    speaker = models.CharField(max_length = 100, verbose_name='Спикер')
+    author = models.CharField(max_length = 100, verbose_name='Автор')
     content = models.TextField(blank=True, verbose_name='Описание')
-    event_date = models.DateTimeField(verbose_name='Дата митапа')
+    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='Обновлено')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True, verbose_name='Фото')
     views = models.IntegerField(default=0, verbose_name='Кол-во просмотров')
-    event_number = models.IntegerField(default=0, verbose_name='Номер митапа')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts', verbose_name='Категория')
 
     def get_absolute_url(self):
@@ -36,7 +35,7 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-event_date']
+        ordering = ['-created_at']
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
 

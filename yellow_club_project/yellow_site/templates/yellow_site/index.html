@@ -22,28 +22,28 @@
     <div class="container">
         <div class="row">
 
-            {% for post in posts %}
+            {% for event in events %}
             <div>
                 <div class="thumbnail">
                     <div class="image">
-                        <a href="{{ post.get_absolute_url}}">
-                            {% if post.photo %}
-                            <img class="undefined" src = "{{ post.photo.url }}" alt="{{ post.title }}" >
+                        <a href="{{ event.get_absolute_url}}">
+                            {% if event.photo %}
+                            <img class="undefined" src = "{{ event.photo.url }}" alt="{{ event.title }}" >
                             {% else %}
                             <img class="undefined" src="{% static 'images/one-page-2509x1670-67.jpg' %}"></a>
                             {% endif %}
                     </div>
                     <div class="caption">
                         <div>
-                            <h3><a href="{{ post.get_absolute_url}}">{{ post.title }}</a></h3>     
+                            <h3><a href="{{ event.get_absolute_url}}">{{ event.title }}</a></h3>     
                         </div>
 
-                        <h4><span>Спикер(ы): <span class="author-name">{{ post.speaker }}</span></span>
+                        <h4><span> Спикеры(ы): <span class="author-name">{{ event.speaker }}</span></span>
                         </h4>
-                        {{ post.content|truncatewords_html:20|safe }}
-                        <h4><span>Создан: {{ post.created_at| date:"j E Y"}}</span></h4>
+                        {{ event.content|truncatewords_html:20|safe }}
+                        <h4><span>Создан: {{ event.created_at| date:"j E Y"}}</span></h4>
 
-                        <p class="group"><a href="{{ post.get_absolute_url}}" class="btn btn-default">Прочитать</a></p>
+                        <p class="group"><a href="{{ event.get_absolute_url}}" class="btn btn-default">Прочитать</a></p>
                     </div>
                 </div>
             </div>
