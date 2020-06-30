@@ -1,4 +1,4 @@
-#!/home/shilovev/django_projects/yellow_club/yellow/bin/python3
+#!/home/shilovev/django_projects/yellow_site/yellow_venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
