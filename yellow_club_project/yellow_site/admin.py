@@ -3,8 +3,26 @@ from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.utils.safestring import mark_safe
 
+from django.contrib.flatpages.models import FlatPage
+
+
+from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld 
+from django.contrib.flatpages.forms import FlatpageForm as FlatPageFormOld
+
+
 from .models import Category, Post
 
+
+class FlatPageForm(FlatPageFormOld):
+    content = forms.CharField(widget=CKEditorUploadingWidget())
+    
+    class Meta:
+        model = FlatPage
+        fields = '__all__'
+
+
+class FlatPageAdmin(FlatPageAdminOld):   
+    form = FlatPageForm
 
 class PostAdminForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorUploadingWidget())
@@ -39,6 +57,10 @@ class PostAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
+
+
+admin.site.unregister(FlatPage)
+admin.site.register(FlatPage, FlatPageAdmin)
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)

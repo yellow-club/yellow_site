@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title%} {{ flatpage.title }} {% endblock %}
+
+{% block content %}
+
+<section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-77" style="background-image: url({% static 'images/index_club.png' %});">
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(0, 0, 0);"></div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>О Желтом Клубе</h3>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section" id="content1-79">
+    <div class="mbr-section__container container mbr-section__container--middle">
+        <div class="row">
+            <div class="mbr-article mbr-article--wysiwyg col-sm-8 col-sm-offset-2"><p>
+            {{ flatpage.content|linebreaks }}        
+            </em></blockquote></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
