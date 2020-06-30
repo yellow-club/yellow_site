@@ -27,6 +27,7 @@ class Event(models.Model):
     views = models.IntegerField(default=0, verbose_name='Кол-во просмотров')
     event_number = models.IntegerField(default=0, verbose_name='Номер мероприятия')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts', verbose_name='Категория')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     def get_absolute_url(self):
         return reverse('event', kwargs={'slug': self.slug})

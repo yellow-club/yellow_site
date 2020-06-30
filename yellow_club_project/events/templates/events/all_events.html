@@ -18,7 +18,7 @@
         </div>
     </div>
 </section>
-<section class="content-2 col-4" id="features1-108" style="background-color: rgb(239, 239, 239);">
+<section class="content-2 col-{% if events|length > 4 %} 4 {% else %}{{events|length}}{% endif %}" id="features1-108" style="background-color: rgb(239, 239, 239);">
     
     <div class="container">
         <div class="row">

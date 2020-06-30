@@ -25,3 +25,8 @@ class GetAllEvents(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Мероприятия с Желтым Клубом'
         return context
+
+    def get_queryset(self):
+        return Event.objects.filter(is_published = True)
+
+
