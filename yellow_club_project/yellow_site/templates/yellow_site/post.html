@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
-
+{% block title %} {{ post.title }} {% endblock %}
 {% block content %}
 
 <section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-77" style="background-image: url({{ post.photo.url }});">
